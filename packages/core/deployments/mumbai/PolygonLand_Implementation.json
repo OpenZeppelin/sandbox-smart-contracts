@@ -74,7 +74,26 @@
       "anonymous": false,
       "inputs": [
         {
+          "indexed": true,
+          "internalType": "address",
+          "name": "subscriptionOrRegistrant",
+          "type": "address"
+        },
+        {
           "indexed": false,
+          "internalType": "bool",
+          "name": "subscribe",
+          "type": "bool"
+        }
+      ],
+      "name": "ContractRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
           "internalType": "address",
           "name": "minter",
           "type": "address"
@@ -87,6 +106,19 @@
         }
       ],
       "name": "Minter",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "registry",
+          "type": "address"
+        }
+      ],
+      "name": "OperatorRegistrySet",
       "type": "event"
     },
     {
@@ -131,6 +163,19 @@
         }
       ],
       "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newForwarder",
+          "type": "address"
+        }
+      ],
+      "name": "TrustedForwarderSet",
       "type": "event"
     },
     {
@@ -370,7 +415,7 @@
       "outputs": [
         {
           "internalType": "address",
-          "name": "trustedForwarder",
+          "name": "",
           "type": "address"
         }
       ],
@@ -393,7 +438,7 @@
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
@@ -412,7 +457,7 @@
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
@@ -458,7 +503,7 @@
       "outputs": [
         {
           "internalType": "bool",
-          "name": "isOperator",
+          "name": "",
           "type": "bool"
         }
       ],
@@ -526,6 +571,39 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "x",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "y",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "mintAndTransferQuad",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "user",
           "type": "address"
         },
@@ -569,6 +647,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "operatorFilterRegistry",
+      "outputs": [
+        {
+          "internalType": "contract IOperatorFilterRegistry",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -585,6 +676,24 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "subscriptionOrRegistrantToCopy",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "subscribe",
+          "type": "bool"
+        }
+      ],
+      "name": "register",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -721,6 +830,19 @@
         }
       ],
       "name": "setMinter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "registry",
+          "type": "address"
+        }
+      ],
+      "name": "setOperatorRegistry",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -925,15 +1047,15 @@
     "methods": {
       "approve(address,uint256)": {
         "params": {
-          "id": "The id of the token.",
-          "operator": "The address receiving the approval."
+          "id": "The id of the token",
+          "operator": "The address receiving the approval"
         }
       },
       "approveFor(address,address,uint256)": {
         "params": {
-          "id": "The id of the token.",
-          "operator": "The address receiving the approval.",
-          "sender": "The address giving the approval."
+          "id": "The id of the token",
+          "operator": "The address receiving the approval",
+          "sender": "The address giving the approval"
         }
       },
       "balanceOf(address)": {
@@ -942,6 +1064,24 @@
         },
         "returns": {
           "_0": "The number of tokens owned by the address."
+        }
+      },
+      "batchTransferFrom(address,address,uint256[],bytes)": {
+        "params": {
+          "data": "Additional data.",
+          "from": "The sender of the token.",
+          "ids": "The ids of the tokens.",
+          "to": "The recipient of the token."
+        }
+      },
+      "batchTransferQuad(address,address,uint256[],uint256[],uint256[],bytes)": {
+        "params": {
+          "data": "additional data",
+          "from": "current owner of the quad",
+          "sizes": "list of sizes for each quad",
+          "to": "destination",
+          "xs": "list of bottom left x coordinates for each quad",
+          "ys": "list of bottom left y coordinates for each quad"
         }
       },
       "burn(uint256)": {
@@ -961,6 +1101,16 @@
           "newAdmin": "The address of the new administrator."
         }
       },
+      "exists(uint256,uint256,uint256)": {
+        "params": {
+          "size": "size of the",
+          "x": "x coordinate of the quad",
+          "y": "y coordinate of the quad"
+        },
+        "returns": {
+          "_0": "bool for if Land has been minted or not"
+        }
+      },
       "getAdmin()": {
         "details": "Get the current administrator of this contract.",
         "returns": {
@@ -973,6 +1123,11 @@
         },
         "returns": {
           "_0": "The address of the operator."
+        }
+      },
+      "getTrustedForwarder()": {
+        "returns": {
+          "_0": "trustedForwarder address of the trusted forwarder"
         }
       },
       "getX(uint256)": {
@@ -1002,7 +1157,7 @@
           "owner": "The address of the owner."
         },
         "returns": {
-          "isOperator": "The status of the approval."
+          "_0": "isOperator The status of the approval."
         }
       },
       "isMinter(address)": {
@@ -1019,6 +1174,23 @@
         },
         "returns": {
           "_0": "whether the address has superOperator rights."
+        }
+      },
+      "isTrustedForwarder(address)": {
+        "params": {
+          "forwarder": "address to check"
+        },
+        "returns": {
+          "_0": "is trusted"
+        }
+      },
+      "mintAndTransferQuad(address,uint256,uint256,uint256,bytes)": {
+        "params": {
+          "data": "extra data to pass to the transfer",
+          "size": "The size of the new quad",
+          "to": "The recipient of the new quad",
+          "x": "The top left x coordinate of the new quad",
+          "y": "The top left y coordinate of the new quad"
         }
       },
       "mintQuad(address,uint256,uint256,uint256,bytes)": {
@@ -1043,6 +1215,13 @@
           "owner": "The address of the token owner."
         }
       },
+      "register(address,bool)": {
+        "details": "can only be called by admin.",
+        "params": {
+          "subscribe": "bool to signify subscription 'true' or to copy the list 'false'.",
+          "subscriptionOrRegistrantToCopy": "registration address of the list to subscribe."
+        }
+      },
       "safeBatchTransferFrom(address,address,uint256[],bytes)": {
         "params": {
           "data": "Additional data.",
@@ -1053,36 +1232,41 @@
       },
       "safeTransferFrom(address,address,uint256)": {
         "params": {
-          "from": "The send of the token.",
-          "id": "The id of the token.",
-          "to": "The recipient of the token."
+          "from": "The send of the token",
+          "id": "The id of the token",
+          "to": "The recipient of the token"
         }
       },
       "safeTransferFrom(address,address,uint256,bytes)": {
         "params": {
-          "data": "Additional data.",
-          "from": "The sender of the token.",
-          "id": "The id of the token.",
-          "to": "The recipient of the token."
+          "data": "Additional data",
+          "from": "The sender of the token",
+          "id": "The id of the token",
+          "to": "The recipient of the token"
         }
       },
       "setApprovalForAll(address,bool)": {
         "params": {
-          "approved": "The determination of the approval.",
-          "operator": "The address receiving the approval."
+          "approved": "The determination of the approval",
+          "operator": "The address receiving the approval"
         }
       },
       "setApprovalForAllFor(address,address,bool)": {
         "params": {
-          "approved": "The determination of the approval.",
-          "operator": "The address receiving the approval.",
-          "sender": "The address giving the approval."
+          "approved": "The determination of the approval",
+          "operator": "The address receiving the approval",
+          "sender": "The address giving the approval"
         }
       },
       "setMinter(address,bool)": {
         "params": {
           "enabled": "set whether the minter is enabled or disabled.",
           "minter": "address that will be given/removed minter right."
+        }
+      },
+      "setOperatorRegistry(address)": {
+        "params": {
+          "registry": "the address of the registry"
         }
       },
       "setSuperOperator(address,bool)": {
@@ -1120,9 +1304,19 @@
       },
       "transferFrom(address,address,uint256)": {
         "params": {
-          "from": "The sender of the token.",
-          "id": "The id of the token.",
-          "to": "The recipient of the token."
+          "from": "The sender of the token",
+          "id": "The id of the token",
+          "to": "The recipient of the token"
+        }
+      },
+      "transferQuad(address,address,uint256,uint256,uint256,bytes)": {
+        "params": {
+          "data": "additional data for transfer",
+          "from": "current owner of the quad",
+          "size": "size of the quad",
+          "to": "destination",
+          "x": "The top left x coordinate of the quad",
+          "y": "The top left y coordinate of the quad"
         }
       },
       "width()": {
@@ -1138,22 +1332,40 @@
     "kind": "user",
     "methods": {
       "approve(address,uint256)": {
-        "notice": "Approve an operator to spend tokens on the senders behalf."
+        "notice": "Approve an operator to spend tokens on the sender behalf"
       },
       "approveFor(address,address,uint256)": {
-        "notice": "Approve an operator to spend tokens on the sender behalf."
+        "notice": "Approve an operator to spend tokens on the sender behalf"
       },
       "balanceOf(address)": {
         "notice": "Get the number of tokens owned by an address."
+      },
+      "batchTransferFrom(address,address,uint256[],bytes)": {
+        "notice": "Transfer many tokens between 2 addresses."
+      },
+      "batchTransferQuad(address,address,uint256[],uint256[],uint256[],bytes)": {
+        "notice": "transfer multiple quad (aligned to a quad tree with size 3, 6, 12 or 24 only)"
       },
       "burn(uint256)": {
         "notice": "Burns token `id`."
       },
       "burnFrom(address,uint256)": {
-        "notice": "Burn token`id` from `from`."
+        "notice": "Burn token `id` from `from`."
+      },
+      "changeAdmin(address)": {
+        "notice": "Change the admin of the contract"
+      },
+      "exists(uint256,uint256,uint256)": {
+        "notice": "checks if Land has been minted or not"
+      },
+      "getAdmin()": {
+        "notice": "Get the current admin"
       },
       "getApproved(uint256)": {
         "notice": "Get the approved operator for a specific token."
+      },
+      "getTrustedForwarder()": {
+        "notice": "Get the current trusted forwarder"
       },
       "getX(uint256)": {
         "notice": "x coordinate of Land token"
@@ -1173,6 +1385,12 @@
       "isSuperOperator(address)": {
         "notice": "check whether address `who` is given superOperator rights."
       },
+      "isTrustedForwarder(address)": {
+        "notice": "Checks if an address is a trusted forwarder"
+      },
+      "mintAndTransferQuad(address,uint256,uint256,uint256,bytes)": {
+        "notice": "Checks if a parent quad has child quads already minted.  Then mints the rest child quads and transfers the parent quad.  Should only be called by the tunnel."
+      },
       "mintQuad(address,uint256,uint256,uint256,bytes)": {
         "notice": "Mint a new quad (aligned to a quad tree with size 1, 3, 6, 12 or 24 only)"
       },
@@ -1182,23 +1400,29 @@
       "ownerOf(uint256)": {
         "notice": "Get the owner of a token."
       },
+      "register(address,bool)": {
+        "notice": "This function is used to register Land contract on the Operator Filterer Registry of Opensea."
+      },
       "safeBatchTransferFrom(address,address,uint256[],bytes)": {
         "notice": "Transfer many tokens between 2 addresses, while ensuring the receiving contract has a receiver method."
       },
       "safeTransferFrom(address,address,uint256)": {
-        "notice": "Transfer a token between 2 addresses letting the receiver know of the transfer."
+        "notice": "Transfer a token between 2 addresses letting the receiver knows of the transfer"
       },
       "safeTransferFrom(address,address,uint256,bytes)": {
-        "notice": "Transfer a token between 2 addresses letting the receiver knows of the transfer."
+        "notice": "Transfer a token between 2 addresses letting the receiver knows of the transfer"
       },
       "setApprovalForAll(address,bool)": {
-        "notice": "Set the approval for an operator to manage all the tokens of the sender."
+        "notice": "Set the approval for an operator to manage all the tokens of the sender"
       },
       "setApprovalForAllFor(address,address,bool)": {
-        "notice": "Set the approval for an operator to manage all the tokens of the sender."
+        "notice": "Set the approval for an operator to manage all the tokens of the sender"
       },
       "setMinter(address,bool)": {
         "notice": "Enable or disable the ability of `minter` to transfer tokens of all (minter rights)."
+      },
+      "setOperatorRegistry(address)": {
+        "notice": "sets filter registry address deployed in test"
       },
       "setSuperOperator(address,bool)": {
         "notice": "Enable or disable the ability of `superOperator` to transfer tokens of all (superOperator rights)."
@@ -1213,7 +1437,10 @@
         "notice": "Return the URI of a specific token"
       },
       "transferFrom(address,address,uint256)": {
-        "notice": "Transfer a token between 2 addresses."
+        "notice": "Transfer a token between 2 addresses"
+      },
+      "transferQuad(address,address,uint256,uint256,uint256,bytes)": {
+        "notice": "transfer one quad (aligned to a quad tree with size 3, 6, 12 or 24 only)"
       },
       "width()": {
         "notice": "total width of the map"
@@ -1318,6 +1545,14 @@
         "offset": 0,
         "slot": "107",
         "type": "t_address"
+      },
+      {
+        "astId": 17796,
+        "contract": "src/solc_0.8/polygon/child/land/PolygonLandV2.sol:PolygonLandV2",
+        "label": "operatorFilterRegistry",
+        "offset": 0,
+        "slot": "108",
+        "type": "t_contract(IOperatorFilterRegistry)18178"
       }
     ],
     "types": {
@@ -1342,6 +1577,11 @@
         "encoding": "inplace",
         "label": "bool",
         "numberOfBytes": "1"
+      },
+      "t_contract(IOperatorFilterRegistry)18178": {
+        "encoding": "inplace",
+        "label": "contract IOperatorFilterRegistry",
+        "numberOfBytes": "20"
       },
       "t_mapping(t_address,t_bool)": {
         "encoding": "mapping",

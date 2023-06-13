@@ -634,6 +634,20 @@
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "registry",
+          "type": "address"
+        }
+      ],
+      "name": "setOperatorRegistry",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -711,6 +725,24 @@
       "constant": false,
       "inputs": [
         {
+          "name": "subscriptionOrRegistrantToCopy",
+          "type": "address"
+        },
+        {
+          "name": "subscribe",
+          "type": "bool"
+        }
+      ],
+      "name": "register",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "name": "superOperator",
           "type": "address"
         },
@@ -723,6 +755,20 @@
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "operatorFilterRegistry",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -841,7 +887,7 @@
       "name": "isApprovedForAll",
       "outputs": [
         {
-          "name": "isOperator",
+          "name": "",
           "type": "bool"
         }
       ],
@@ -909,7 +955,36 @@
       "anonymous": false,
       "inputs": [
         {
+          "indexed": true,
+          "name": "registry",
+          "type": "address"
+        }
+      ],
+      "name": "OperatorRegistrySet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "subscriptionOrRegistrant",
+          "type": "address"
+        },
+        {
           "indexed": false,
+          "name": "subscribe",
+          "type": "bool"
+        }
+      ],
+      "name": "ContractRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
           "name": "superOperator",
           "type": "address"
         },
@@ -926,7 +1001,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "name": "metaTransactionProcessor",
           "type": "address"
         },
@@ -943,7 +1018,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "name": "superOperator",
           "type": "address"
         },
