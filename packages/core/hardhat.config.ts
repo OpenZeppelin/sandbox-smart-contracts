@@ -110,47 +110,35 @@ const config: HardhatUserConfig = {
   namedAccounts: {
     deployer: {
       default: 1,
-      mainnet: '0xe19ae8F9B36Ca43D12741288D0e311396140DF6F',
-      polygon: '0x7074BB056C53ACC0b6091dd3FAe591aa3A4acC88',
-      goerli: '0xA796AE911621E00809E0E7C8f0AD6BF118E5139e',
-      goerli_test: '0xA796AE911621E00809E0E7C8f0AD6BF118E5139e',
-      mumbai: '0x5F890c9522dCE5670d741D4277BFCC2d9cA8Af02',
-      mumbai_test: '0x5F890c9522dCE5670d741D4277BFCC2d9cA8Af02',
+      goerli: '0xA8914C79456eD6d36102A1bed4E471dA2Af4d8d6',
+      mumbai: '0xA8914C79456eD6d36102A1bed4E471dA2Af4d8d6',
     }, // deploy contracts and make sure they are set up correctly
 
     sandAdmin: {
       default: 2,
-      mainnet: '0xeaa0993e1d21c2103e4f172a20d29371fbaf6d06',
-      polygon: '0xfD30a48Bc6c56E24B0ebF1B0117d750e2CFf7531',
-      goerli: '0x39D01ecc951C2c1f20ba0549e62212659c4d1e06',
-      goerli_test: '0x39D01ecc951C2c1f20ba0549e62212659c4d1e06',
-      mumbai: '0x49c4D4C94829B9c44052C5f5Cb164Fc612181165',
-      mumbai_test: '0x49c4D4C94829B9c44052C5f5Cb164Fc612181165',
+      mumbai: '0x9197A1CCdC89891b7533152053E9F503D7D4Bb2A',
+      goerli: '0x9197A1CCdC89891b7533152053E9F503D7D4Bb2A',
     }, // can add super operators and change admin
 
     operationsAdmin: {
       default: 2,
-      mainnet: '0x6ec4090d0F3cB76d9f3D8c4D5BB058A225E560a1',
-      polygon: '0xfD30a48Bc6c56E24B0ebF1B0117d750e2CFf7531',
+      mumbai: '0x9197A1CCdC89891b7533152053E9F503D7D4Bb2A',
+      goerli: '0x9197A1CCdC89891b7533152053E9F503D7D4Bb2A',
     },
 
     upgradeAdmin: 'sandAdmin',
 
     multiGiveawayAdmin: {
       default: 'sandAdmin',
-      mainnet: '0x6ec4090d0F3cB76d9f3D8c4D5BB058A225E560a1',
-      polygon: '0xfD30a48Bc6c56E24B0ebF1B0117d750e2CFf7531',
     },
 
     liquidityRewardProvider: {
       default: 'sandBeneficiary',
-      mainnet: '0x8FFA64FB50559c3Ff09a1022b84B2c5233ed8068',
     },
     liquidityRewardAdmin: 'sandAdmin',
 
     kyberDepositor: {
       default: 'sandBeneficiary',
-      mainnet: '0x8FFA64FB50559c3Ff09a1022b84B2c5233ed8068',
     },
 
     sandExecutionAdmin: 'sandAdmin', // can add execution extension to SAND (used for Native metatx support)
@@ -168,24 +156,16 @@ const config: HardhatUserConfig = {
 
     sandSaleBeneficiary: {
       default: 3,
-      mainnet: '0x0EB04462D69B1D267d269377E34f60b9De1c8510',
-      polygon: '0xbc4fE9A8a46442eDaF13Bd5c615D7CFe0953885B', // TODO: get sand admin multi sig contract
-      goerli: '0xF22455c7F2a81E197AecD951F588a9B650f5b282',
-      goerli_test: '0xF22455c7F2a81E197AecD951F588a9B650f5b282',
-      mumbai: '0xa5Eb9C9Eb4F4c35B9Be8cFaAA7909F9ebe6Cb609',
-      mumbai_test: '0xa5Eb9C9Eb4F4c35B9Be8cFaAA7909F9ebe6Cb609',
+      goerli: '0xdCD12C5539Ff0f31A2D163aFb6dde4c4acc7e9b4',
+      mumbai: '0xdCD12C5539Ff0f31A2D163aFb6dde4c4acc7e9b4',
     },
 
     treasury: {
       default: 'sandSaleBeneficiary',
-      mainnet: '0x4489590a116618B506F0EfE885432F6A8ED998E9',
-      polygon: '0x1b47567CBE36e63293A7A2018F79687f942aB24C',
     },
 
     landSaleBeneficiary: {
       default: 'sandSaleBeneficiary',
-      mainnet: 'treasury',
-      polygon: 'treasury',
     }, // updated to company treasury wallet 9th September - collect funds from land sales
 
     catalystAssetFeeRecipient: 'treasury',
@@ -193,32 +173,21 @@ const config: HardhatUserConfig = {
     landSaleFeeRecipient: {
       default: 3,
       goerli: 5,
-      goerli_test: 5,
       mumbai: 5,
-      mainnet: '0x0EB04462D69B1D267d269377E34f60b9De1c8510',
-      polygon: '0x42a4a3795446A4c070565da201c6303fC78a2569',
     }, // collect 5% fee from land sales (prior to implementation of FeeDistributor)
 
     landAdmin: {
       default: 2,
-      mainnet: '0xeaa0993e1d21c2103e4f172a20d29371fbaf6d06',
-      polygon: '0xe75Ce341C98400a45F579e32C95fF49681Fc93fa', // TODO: get sand admin multi sig contract
-      goerli: '0x39D01ecc951C2c1f20ba0549e62212659c4d1e06',
-      goerli_test: '0x39D01ecc951C2c1f20ba0549e62212659c4d1e06',
-      mumbai: '0x49c4D4C94829B9c44052C5f5Cb164Fc612181165',
-      mumbai_test: '0x49c4D4C94829B9c44052C5f5Cb164Fc612181165',
+      goerli: '0x29f9d1a05F5F8a0e298ed76F2d98875ea6c6382a',
+      mumbai: '0x29f9d1a05F5F8a0e298ed76F2d98875ea6c6382a',
     }, // can add super operators and change admin
 
     gemsAndCatalystsAdmin: 'sandAdmin',
     assetAttributesRegistryAdmin: 'sandAdmin',
     proxyAdminOwner: {
       default: 2,
-      mainnet: '0xeaa0993e1d21c2103e4f172a20d29371fbaf6d06',
-      polygon: '0xe75Ce341C98400a45F579e32C95fF49681Fc93fa', // TODO: get sand admin multi sig contract
-      goerli: '0x39D01ecc951C2c1f20ba0549e62212659c4d1e06',
-      goerli_test: '0x39D01ecc951C2c1f20ba0549e62212659c4d1e06',
-      mumbai: '0x49c4D4C94829B9c44052C5f5Cb164Fc612181165',
-      mumbai_test: '0x49c4D4C94829B9c44052C5f5Cb164Fc612181165',
+      goerli: '0x1eBAaabCa67443167f82b02aeC5D8c0c060F292C',
+      mumbai: '0x1eBAaabCa67443167f82b02aeC5D8c0c060F292C',
     },
 
     landSaleAdmin: 'sandAdmin', // can enable currencies
@@ -229,54 +198,28 @@ const config: HardhatUserConfig = {
     backendReferralWallet: {
       // default is computed from private key:
       // "0x4242424242424242424242424242424242424242424242424242424242424242"
-      default: '0x17c5185167401eD00cF5F5b2fc97D9BBfDb7D025',
-      mainnet: '0x3044719d139F866a44c988823513eCB93060bF1b',
-      polygon: '0x3044719d139F866a44c988823513eCB93060bF1b',
-      goerli: '0xB7060D3FeCAC3AE1F0A0AA416E3e8E472257950e',
-      goerli_test: '0xB7060D3FeCAC3AE1F0A0AA416E3e8E472257950e',
-      mumbai: '0xB7060D3FeCAC3AE1F0A0AA416E3e8E472257950e',
+      default: '0x809812E8707e0e34a69a6db6e08f79116c8D0e41',
     },
     // To be used with AuthValidator only
     backendAuthWallet: {
-      // default is computed from private key:
-      // "0x4242424242424242424242424242424242424242424242424242424242424242"
-      default: '0x17c5185167401eD00cF5F5b2fc97D9BBfDb7D025',
-      mainnet: '0x061872DFd0CAC4Ec7a7c87EEE9B950bb1fAD2906',
-      goerli: '0x0c72f82B46f034025622731c271bdf06B848Ed77',
-      goerli_test: '0x0c72f82B46f034025622731c271bdf06B848Ed77',
-      polygon: '0x061872DFd0CAC4Ec7a7c87EEE9B950bb1fAD2906',
-      mumbai: '0x0c72f82B46f034025622731c271bdf06B848Ed77',
+      default: '0x3cD06D6282cf7A79D03eAf3316ECfBee770A640b',
     },
     backendCashbackWallet: {
-      // default is computed from private key:
-      // "0x4242424242424242424242424242424242424242424242424242424242424242"
-      default: '0x17c5185167401eD00cF5F5b2fc97D9BBfDb7D025',
-      polygon: '0x564c8aADBd35b6175C0d18595cc335106AA250Dc',
+      default: '0x3cD06D6282cf7A79D03eAf3316ECfBee770A640b',
     },
     raffleSignWallet: {
       // default is computed from private key:
       // "0x4242424242424242424242424242424242424242424242424242424242424242"
-      default: '0x17c5185167401eD00cF5F5b2fc97D9BBfDb7D025',
-      mainnet: '0x4e2422AC29B72290Be28C6a7c3Fad7A7fDA69e7a',
-      polygon: '0x4e2422AC29B72290Be28C6a7c3Fad7A7fDA69e7a',
+      default: '0x3cD06D6282cf7A79D03eAf3316ECfBee770A640b',
     },
     sandboxAccount: {
-      default: 4,
-      mainnet: '0x7A9fe22691c811ea339D9B73150e6911a5343DcA',
-      polygon: '0x7A9fe22691c811ea339D9B73150e6911a5343DcA',
-      goerli: '0x5BC3D5A39a50BE2348b9C529f81aE79f00945897', // Leon account on demo.sandbox
-      goerli_test: '0x5BC3D5A39a50BE2348b9C529f81aE79f00945897', // Leon account on demo.sandbox
+      default: '0xb5F685cBF71526584cC78bC01a14C72767AbC646',
     },
     sandboxFoundation: {
       default: 'sandAdmin',
-      mainnet: '0x8FFA64FB50559c3Ff09a1022b84B2c5233ed8068',
-      polygon: '0x7A9fe22691c811ea339D9B73150e6911a5343DcA', //'0xfe66Ec1B46494FE49F53733a098587bf5D12BD88',
     },
     extraCatalystAndGemMinter: {
-      default: null,
-      mainnet: null,
-      goerli: '0x5BC3D5A39a50BE2348b9C529f81aE79f00945897', // Leon account on demo.sandbox
-      goerli_test: '0x5BC3D5A39a50BE2348b9C529f81aE79f00945897', // Leon account on demo.sandbox
+      default: '0x81Bba87de642Ac2D02F3CA1Db7a05e86e8ab2eDB',
     },
     defaultOperatorFiltererRegistry:
       '0x000000000000AAeB6D7670E522A718067333cd4E',
@@ -305,7 +248,7 @@ const config: HardhatUserConfig = {
     nftCollectionAdmin: {
       default: 'sandAdmin',
       mainnet: null,
-      polygon: '0xF06dD9b61d480704Cc7bEF717e5Ea6efB6Af75bE', // Final admin should be 0xE79AF6BEb7D31c7faF7a1b891d9684960522D22e
+      polygon: '0x81Bba87de642Ac2D02F3CA1Db7a05e86e8ab2eDB',
     },
   },
   networks: {
@@ -350,6 +293,7 @@ const config: HardhatUserConfig = {
       url: node_url('goerli'),
       accounts: accounts('goerli'),
       tags: ['testnet', 'L1'],
+      deploy: ['deploy'],
       // gasPrice: 600000000000, // Uncomment in case of pending txs, and adjust gas
       companionNetworks: {
         l2: 'mumbai',
