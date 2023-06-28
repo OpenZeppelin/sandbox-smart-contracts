@@ -1,5 +1,5 @@
 {
-  "name": "@sandbox-smart-contracts/core",
+  "name": "sandbox-smart-contracts-fork-core",
   "version": "0.0.1",
   "description": "smart contracts for the sandbox",
   "license": "MIT",
